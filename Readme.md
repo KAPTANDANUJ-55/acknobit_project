@@ -81,8 +81,8 @@
 * Sample JSON:
 * ```json
   [{
-       "fullName": "YOUR_FULL_NAME"
-       "phoneNumber": "YOUR_PHONE_NUMBER"
+       "fullName": "YOUR_FULL_NAME",
+       "phoneNumber": "YOUR_PHONE_NUMBER",
         "email": "example@example.com",
         "businessName": "YOUR_BUSINESS_NAME",
          "companySize": "WRITE_YOUR_COMPANY_SIZE",
