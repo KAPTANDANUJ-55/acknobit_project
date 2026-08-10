@@ -73,3 +73,84 @@
  ```
 
 
+# Complete RESTful Specs
+
+## 1. submit client inquiries
+* Endpoint : POST /acknobit/client/leads
+* Description : It will send the notification of filled up form via java mail sender
+* Sample JSON:
+* ```json
+  [{
+       "fullName": "YOUR_FULL_NAME"
+       "phoneNumber": "YOUR_PHONE_NUMBER"
+        "email": "example@example.com",
+        "businessName": "YOUR_BUSINESS_NAME",
+         "companySize": "WRITE_YOUR_COMPANY_SIZE",
+         "serviceInterested": "YOUR_INTEREST",
+         "budgetRange": "YOUR_BUDGET_RANGE",
+          "timeline": "WRITE_YOUR_TIMELINE",
+           "projectDetails": "ADD_YOUR_FULL_PROJECT_DETAILS"
+  }]
+  ```
+ * ```
+   Responses: 201 Created : data sucessfully saved in mySQL
+             400 Bad Request: Validation failure
+   ```
+
+
+
+ ---
+## 2. fetch public portfolios
+* Endpoint : GET /acknobit/client/portfolios
+
+* Description : Fetches list of live bots and showcase projects for site visitors.
+
+* Query Params : ?category=WHATSAPP_BOT (Optional)
+
+* Sample Response:
+ ```json
+[
+  {
+    "id": 1,
+    "title": "E-commerce Support Bot",
+    "category": "WHATSAPP_BOT",
+    "description": "Automated WhatsApp support agent with automated tracking & FAQs.",
+    "clientName": "RetailHub",
+    "demoUrl": "[https://demo.acknobit.com/whatsapp-bot](https://demo.acknobit.com/whatsapp-bot)",
+    "imageUrl": "[https://acknobit.com/images/whatsapp-bot.jpg](https://acknobit.com/images/whatsapp-bot.jpg)",
+    "isFeatured": true
+  }
+]
+```
+* ```Responses: 200 OK : Portfolios fetched successfully```
+
+ ---
+## 3. admin login authentication
+* Endpoint : POST /acknobit/auth/login
+
+* Description : Validates admin credentials and returns JWT bearer token.
+
+Sample JSON:
+  ```json
+{
+"username": "admin_acknobit",
+"password": "SuperSecretPassword123"
+}
+```
+
+``` 
+Sample Responses:
+  {
+  "success": true,
+  "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1p...",
+  "username": "admin_acknobit",
+  "role": "ROLE_ADMIN"
+}
+  
+  ```  
+
+* ```
+  Responses: 200 OK : Auth successful 401 Unauthorized : Invalid username or password
+
+
+```
