@@ -46,7 +46,7 @@ A comprehensive UI/UX blueprint, visual style guide, wireframe layout map, and c
 
 ---
 
-##  3. Page Structure & Wireframe Layouts
+##  3. Page Structure 
 
 ### PUBLIC HOMEPAGE (`index.html`)
 

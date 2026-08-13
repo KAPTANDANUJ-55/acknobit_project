@@ -1,0 +1,281 @@
+/* ============================================================
+   ACKNOBIT AI — MARKDOWN PDF
+   BALANCED BLUEPRINT EDITION
+   ============================================================ */
+
+@page {
+    size: A4 landscape;
+    margin: 9mm 10mm 9mm 10mm;
+}
+
+
+/* ============================================================
+   GLOBAL
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 10.5px;
+    line-height: 1.5;
+    color: #1f2937;
+}
+
+
+/* ============================================================
+   HEADINGS
+   ============================================================ */
+
+h1 {
+    font-size: 25px;
+    margin-top: 0;
+    margin-bottom: 14px;
+    page-break-after: avoid;
+}
+
+h2 {
+    font-size: 19px;
+    margin-top: 22px;
+    margin-bottom: 10px;
+    page-break-after: avoid;
+}
+
+h3 {
+    font-size: 15px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    page-break-after: avoid;
+}
+
+
+/* ============================================================
+   PARAGRAPHS / LISTS
+   ============================================================ */
+
+p {
+    margin: 5px 0 8px;
+}
+
+ul,
+ol {
+    margin-top: 5px;
+    margin-bottom: 9px;
+}
+
+li {
+    margin-bottom: 3px;
+}
+
+
+/* ============================================================
+   MARKDOWN TABLES
+   ============================================================ */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px;
+
+    font-size: 9.5px;
+
+    page-break-inside: avoid;
+}
+
+thead {
+    display: table-header-group;
+}
+
+th {
+    padding: 6px 8px;
+
+    border: 1px solid #cbd5e1;
+
+    background: #f1f5f9;
+
+    font-weight: 700;
+    text-align: left;
+}
+
+td {
+    padding: 6px 8px;
+
+    border: 1px solid #cbd5e1;
+
+    text-align: left;
+}
+
+tr {
+    page-break-inside: avoid;
+}
+
+
+/* ============================================================
+   INLINE CODE
+   ============================================================ */
+
+code {
+    font-family:
+        "Consolas",
+        "Cascadia Mono",
+        "Courier New",
+        monospace;
+
+    font-size: 0.9em;
+}
+
+
+/* ============================================================
+   ASCII BLUEPRINTS
+   ============================================================ */
+
+/* ============================================================
+   ASCII BLUEPRINTS — BALANCED
+   ============================================================ */
+
+pre {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+
+    box-sizing: border-box;
+
+    /* Preserve ASCII alignment */
+    white-space: pre !important;
+
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+    word-wrap: normal !important;
+
+    overflow: hidden !important;
+
+    font-family:
+        "Consolas",
+        "Cascadia Mono",
+        "Courier New",
+        monospace !important;
+
+    /* More readable */
+    font-size: 8px !important;
+
+    line-height: 1.25 !important;
+
+    padding: 10px 12px !important;
+
+    margin: 12px 0 18px !important;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 5px;
+
+    background: #f8fafc;
+
+    page-break-inside: avoid;
+}
+
+
+/* ============================================================
+   CODE INSIDE BLUEPRINT
+   ============================================================ */
+
+pre code {
+    display: block;
+
+    white-space: pre !important;
+
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+    word-wrap: normal !important;
+
+    font-family:
+        "Consolas",
+        "Cascadia Mono",
+        "Courier New",
+        monospace !important;
+
+    font-size: 8px !important;
+
+    line-height: 1.25 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* ============================================================
+   BLOCKQUOTE
+   ============================================================ */
+
+blockquote {
+    margin: 9px 0;
+    padding: 6px 12px;
+
+    border-left: 3px solid #64748b;
+
+    background: #f8fafc;
+
+    page-break-inside: avoid;
+}
+
+
+/* ============================================================
+   HORIZONTAL RULE
+   ============================================================ */
+
+hr {
+    border: 0;
+    border-top: 1px solid #cbd5e1;
+
+    margin: 16px 0;
+}
+
+
+/* ============================================================
+   IMAGES
+   ============================================================ */
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* ============================================================
+   PAGE BREAK CONTROL
+   ============================================================ */
+
+h1,
+h2,
+h3,
+h4 {
+    page-break-after: avoid;
+}
+
+pre,
+table,
+blockquote {
+    page-break-inside: avoid;
+}
+
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+
+@media print {
+
+    pre {
+        white-space: pre !important;
+        overflow: hidden !important;
+    }
+
+    pre code {
+        white-space: pre !important;
+    }
+
+    table {
+        page-break-inside: avoid;
+    }
+}
