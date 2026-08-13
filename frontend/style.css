@@ -7,6 +7,10 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px ;
+}
 body{
     background-image: 
     linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
@@ -124,7 +128,14 @@ body{
   border-radius: 30px;
   text-decoration: none;
   font-weight: bold;
+  
 
+}
+.btm-primary:hover{
+   transform: translateY(-6px);
+  
+  box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.2);
+  
 }
 .btn {
     background-color: transparent;
@@ -140,9 +151,9 @@ body{
 }
 
 .btn:hover{
-    background-color:  rgba(42, 116, 218, 0.05);
-    border-color: rgba(255, 255, 255, 0.3);
-
+    transform: translateY(-6px);
+  border-color: #2563eb;
+  box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.2);
 }
 
 
@@ -338,33 +349,89 @@ background: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.12) 0px, transparent 5
 flex-direction: column;
 align-self: flex-end; 
 }
-.services, .Every-Platform-Bots, .section { padding: 90px 20px; max-width: 1200px; margin: 15px auto; }
-.section-tag, .secondary-tag { color: #3b82f6; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; text-align: center; }
+.services, .Every-Platform-Bots, .section { padding: 100px 20px; max-width: 1500px; margin: 15px auto; text-align: center; }
+.section-tag, .secondary-tag {font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; text-align: center;  border: 1px solid rgba(37, 99, 235, 0.3);
+    border-radius: 30px;
+    color: #2563eb;
+    list-style: none;
+    font-size: large;
+    font-weight: bolder;
+      display: inline-block;
+    background: rgba(37, 99, 235, 0.1);}
 .core-services h1, .header h1, .section h2 { text-align: center; font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
 .description, .header p { text-align: center; color: #9ca3af; margin-bottom: 45px; }
 
+.flex-4{
+    background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 28px;
+  border-radius: 18px;
+  position: relative;
+  transition: all 0.3s ease;
 
-
-
-
-
-.flex-1, .flex-card, .secondary-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
 }
 
-.flex-card > div, .card, .flex-1 > div {
+.flex-3{
   background: #111827;
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 28px;
   border-radius: 18px;
   position: relative;
   transition: all 0.3s ease;
+
 }
-.flex-card > div:hover, .card:hover, .flex-1 > div:hover {
-  transform: translateY(-6px);
+
+.flex-card{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+.card{
+    background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 28px;
+  border-radius: 18px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.card:hover{
+      transform: translateY(-6px);
   border-color: #2563eb;
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.2);
+}
+
+.flex-2{
+    background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 28px;
+  border-radius: 18px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.flex-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.flex-card1{
+  background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 28px;
+  border-radius: 18px;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.flex-card1:hover , .flex-2:hover, .flex-3:hover, .flex-4:hover{
+    transform: translateY(-6px);
+  border-color: #2563eb;
+  transform: scale(1.1);
   box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.2);
 }
 
