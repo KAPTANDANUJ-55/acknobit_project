@@ -380,9 +380,36 @@ align-self: flex-end;
   border-radius: 12px;
 }
 
-.icon, .icon-wrapper svg { width: 32px; height: 32px; color: #3b82f6; margin-bottom: 16px; }
+#whatsapp svg {
+  width: 28px;
+  height: 28px;
+  fill: #25D366;       
+  color: #25D366;                     
+}
+ .icon-wrapper svg{
+  color: #1d4ed8;
+  fill: #054be1;
 
-/* Contact Section & Form Design */
+ }
+
+ #insta svg {
+  width: 28px;
+  height: 28px;                         
+ width: 28px;
+  height: 28px;
+  fill: #E1306C;                               /* Instagram brand pink/magenta color */
+  color: #E1306C;
+}
+
+ .icon-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
+.icon { display: flex; width: 32px; height: 32px; color: #3b82f6; margin-bottom: 16px; }
+
+
 .contact-container-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
