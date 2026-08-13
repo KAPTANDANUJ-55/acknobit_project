@@ -118,8 +118,7 @@
 //     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 //   }
 //    function getBotResponse(userMessage){
-//     const API_KEY = "AIzaSyBcVNXJuhyeBGzuIPeSJl-iE_TeikAde1E";
-//     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${AIzaSyBcVNXJuhyeBGzuIPeSJl-iE_TeikAde1E}`
+//     
 //     const API_KEY = "YOUR_GEMINI_API_KEY";
 // const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
 
