@@ -1,7 +1,7 @@
   document.addEventListener('DOMContentLoaded',()=> {
   const statsBar = document.querySelector(".stats-bar");
   const numbers = document.querySelectorAll(".stat .number");
-const projectsElement = numbers[0]; // Pehla number (Projects Delivered)
+const projectsElement = numbers[0]; 
     if (projectsElement) {
         const savedProjects = localStorage.getItem("projectsCount");
         if (savedProjects) {
