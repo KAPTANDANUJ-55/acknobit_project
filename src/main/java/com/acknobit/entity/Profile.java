@@ -1,22 +1,19 @@
 package com.acknobit.entity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Service;
 
 @Entity
 @Table(name = "files")
 @Getter
+@Setter
 @Service
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 
-public class ProfileService {
+public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

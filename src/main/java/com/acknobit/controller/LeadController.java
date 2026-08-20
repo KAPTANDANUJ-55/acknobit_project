@@ -21,7 +21,7 @@ public class LeadController {
     @PostMapping("/submit")
     public ResponseEntity<LeadResponses> submitLead(@RequestBody LeadRequests request) {
 
-        // 1. Save Lead into MySQL Database
+
         Lead lead = new Lead(
                 request.fullName(),
                 request.email(),
@@ -32,11 +32,11 @@ public class LeadController {
         );
         leadRepository.save(lead);
 
-        // 2. Return Success along with Redirect URL
+
         LeadResponses response = new LeadResponses(
                 true,
                 "Thank you! Redirecting to services portal...",
-                "/services.html" // Jo naya HTML/CSS page hum banayenge
+                "/main.html"
         );
 
         return ResponseEntity.ok(response);
