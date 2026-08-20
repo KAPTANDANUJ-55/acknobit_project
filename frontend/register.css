@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background-color: #0b0f17;
+    background-image: 
+        radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.18) 0%, rgba(15, 23, 42, 0) 60%),
+        linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 30px 30px, 30px 30px;
+    background-attachment: fixed;
+    color: #f3f4f6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header-container {
+    font-size: 1.2rem;
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    color: #1d4ed8;
+}
+
+
+
+.nav-bar ul {
+    list-style: none;
+}
+
+.nav-bar a {
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-bar a:hover {
+    color: #38bdf8;
+}
+
+.main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: 40px 20px;
+}
+
+.loginc {
+    width: 100%;
+    max-width: 440px;
+}
+
+.loginbox {
+    background: #111827;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 40px 32px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    position: relative;
+}
+
+.tag-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #38bdf8;
+    background: rgba(37, 99, 235, 0.1);
+    border: 1px solid rgba(37, 99, 235, 0.3);
+    border-radius: 20px;
+    margin-bottom: 16px;
+}
+
+.logwa {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.desc {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+}
+
+.inputg {
+    margin-bottom: 16px;
+}
+
+input {
+    width: 100%;
+    padding: 14px 18px;
+    background: #0b0f17;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+}
+
+.but {
+    width: 100%;
+    padding: 14px;
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+}
+
+.but:hover {
+    background: #1d4ed8;
+    box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+    transform: translateY(-2px);
+}
+
+.login-footer {
+    margin-top: 24px;
+}
+
+.jaruri {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.alt-action {
+    color: #9ca3af;
+    font-size: 0.88rem;
+}
+
+.alt-action a {
+    color: #38bdf8;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.alt-action a:hover {
+    text-decoration: underline;
+}
+
+.back-link {
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #ffffff;
+}
+
+.success-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #38bdf8;
+    margin-bottom: 8px;
+}
+
+.success-subtitle {
+    color: #9ca3af;
+    font-size: 0.95rem;
+}
+
+footer {
+    padding: 24px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #4b5563;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 480px) {
+    .header-container {
+        padding: 20px;
+    }
+    
+    .loginbox {
+        padding: 30px 20px;
+    }
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Acknobit AI - Admin Login</title>
+</head>
+<body>
+    <header class="header-container">
+        <h1>Acknobit AI</h1>
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="index.html#contact">Contact Support</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <div class="loginc">
+            <div class="loginbox">
+                <div id="success-overlay" style="display:none; text-align:center;">
+                    <h2 class="success-title">Access Granted</h2>
+                    <p class="success-subtitle">Redirecting to Dashboard...</p>
+                </div>
+
+                <div id="login-content">
+                    <div class="tag-badge">SECURE ACCESS</div>
+                    <h3 class="logwa">Portal Login</h3>
+                    <p class="desc">Enter your credentials to manage AI solutions</p>
+
+                    <form id="loginForm" novalidate>
+                        <div class="inputg">
+                            <input type="email" id="mail" name="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="inputg">
+                            <input type="password" id="password" name="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="but">Sign In</button>
+                        
+                        <div class="login-footer">
+                            <div class="jaruri">
+                                <a href="index.html">← Back to Home</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> 
+    </main>
+
+    <footer>
+        © 2026 Acknobit AI. All rights reserved.
+    </footer>
+
+<script>
+const form = document.getElementById('loginForm');
+const loginContent = document.getElementById('login-content');
+const successOverlay = document.getElementById('success-overlay');
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    let isValid = true;
+    document.querySelectorAll('.error-msg').forEach(el => el.remove());
+    document.querySelectorAll('input').forEach(el => el.style.borderColor = '');
+    
+    const mail = document.getElementById("mail");
+    const password = document.getElementById("password");
+
+    const inputs = [mail, password];
+
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            isValid = false;
+            input.style.borderColor = '#ef4444';
+            const err = document.createElement('span');
+            err.className = 'error-msg';
+            err.style.cssText = 'color: #ef4444; font-size: 0.8rem; display: block; margin-top: -10px; margin-bottom: 12px; text-align: left;';
+            err.textContent = "Please fill in this field";
+            input.parentNode.appendChild(err);
+        }
+    });
+    
+    if (isValid) {
+        const userData = {
+            email: mail.value.trim().toLowerCase(),
+            password: password.value.trim()
+        };
+
+        fetch("http://localhost:8080/api/admin/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userData)
+        })
+        .then(async response => {
+            const data = await response.json();
+            if (response.ok) {
+                if (loginContent && successOverlay) {
+                    loginContent.style.display = "none";
+                    successOverlay.style.display = "block";
+                }
+                setTimeout(() => {
+                    window.location.href = "admin.html";
+                }, 2000);
+            } else {
+                alert("LOGIN FAILED: " + (data.message || "Invalid Credentials"));
+            }
+        })
+        .catch(error => {
+            console.error("Server Side Error: ", error);
+            alert("SERVER SIDE ISSUE: Connection Failed");
+        });
+    }
+});
+</script>
+</body>
+</html>

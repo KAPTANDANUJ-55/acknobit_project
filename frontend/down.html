@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acknobit Showcase</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #030712;
+            color: #f8fafc;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .showcase-wrapper {
+            width: 100%;
+            max-width: 1600px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .top-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .brand-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #38bdf8;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-download-all {
+            background: #38bdf8;
+            color: #030712;
+            border: none;
+            padding: 0.75rem 1.6rem;
+            font-size: 0.9rem;
+            font-weight: 800;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-download-all:hover {
+            background: #0284c7;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        #canvasArea {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            background: #030712;
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .grid-3-col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .card {
+            background: #0b0f19;
+            border: 1px solid #1e293b;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .card:hover {
+            border-color: #38bdf8;
+            transform: translateY(-4px);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 1024px) {
+            .grid-2-col, .grid-3-col {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="showcase-wrapper">
+        <div class="top-action">
+            <span class="brand-title">Acknobit AI Architecture Showcase</span>
+            <button class="btn-download-all" onclick="downloadFullPoster()">Download Single Photo (PNG)</button>
+        </div>
+
+        <div id="canvasArea">
+            <div class="grid-2-col">
+                <div class="card">
+                    <img src="127.0.0.1_3000_frontend_index.html.png" alt="Hero Section">
+                </div>
+                <div class="card">
+                    <img src="127.0.0.1_3000_frontend_index.html (1).png" alt="Core Services & Bots">
+                </div>
+            </div>
+
+            <div class="grid-3-col">
+                <div class="card">
+                    <img src="127.0.0.1_3000_frontend_index.html (2).png" alt="How It Works">
+                </div>
+                <div class="card">
+                    <img src="127.0.0.1_3000_frontend_index.html (3).png" alt="Contact & Lead Form">
+                </div>
+                <div class="card">
+                    <img src="127.0.0.1_3000_frontend_index.html (4).png" alt="Footer & Chatbot">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadFullPoster() {
+            const btn = document.querySelector('.btn-download-all');
+            btn.innerText = "Generating PNG...";
+            btn.style.opacity = "0.7";
+
+            const element = document.getElementById("canvasArea");
+            html2canvas(element, {
+                scale: 2,
+                backgroundColor: "#030712",
+                useCORS: true
+            }).then(canvas => {
+                const link = document.createElement("a");
+                link.download = "Acknobit_Landing_Showcase.png";
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+
+                btn.innerText = "Download Single Photo (PNG)";
+                btn.style.opacity = "1";
+            }).catch(() => {
+                btn.innerText = "Download Single Photo (PNG)";
+                btn.style.opacity = "1";
+            });
+        }
+    </script>
+</body>
+</html>

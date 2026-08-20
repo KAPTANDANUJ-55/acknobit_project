@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #020617;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
+
+      .sidebar.admin-sidebar {
+        width: 260px;
+        height: 100vh;
+        background-color: #060b13;
+        color: #94a3b8;
+        display: flex;
+        flex-direction: column;
+        padding: 24px 16px;
+        box-sizing: border-box;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 36px;
+        padding-left: 8px;
+      }
+      .brand .logo-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .brand .logo-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .brand-text h2 {
+        color: #ffffff;
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        line-height: 1.2;
+        margin: 0;
+      }
+
+      .admin-badge {
+        font-size: 0.65rem;
+        color: #38bdf8;
+        font-weight: 600;
+        letter-spacing: 0.8px;
+        margin-top: 2px;
+      }
+
+      .nav-section {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .section-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #475569;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        padding-left: 10px;
+      }
+
+      .nav-item {
+        text-decoration: none;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        color: #547cb4;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+
+      .nav-item .icon {
+        font-size: 1.1rem;
+      }
+      .nav-item :hover {
+        background-color: rgba(255, 255, 255, 0.04);
+        color: #e2e8f0;
+      }
+      .nav-item.active {
+        background-color: #0c1e33;
+        color: #38bdf8;
+        border: 1px solid rgba(56, 189, 248, 0.25);
+      }
+
+
+      
+        .user-panel {
+            margin-top: 100px;
+            padding-top: 1.25rem;
+            border-top: 1px solid blue;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+      .user-avatar-img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid;
+            background: #1f2937;
+        }
+         .user-details h4 {
+            color: #38bdf8;
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+        .user-details p {
+            display: flex;
+            font-size: 0.75rem;
+            align-items: center;
+            text-decoration: solid;
+            gap: 4px;
+            color: green;
+        }
+
+        .user-details p::before{
+           content: '';
+            width: 6px;
+            height: 6px;
+            background: green;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 4px;
+        }
+           .nav-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.85rem 1rem;
+            border-radius: 10px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: transparent;
+            border: 1px solid transparent;
+            width: 100%;
+            text-align: left;
+        }
+     .nav-btn-left{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+     }
+
+    .avtar{
+       margin-left: -8px;
+        width: 25px;
+        text-align: center;
+     }
+      
+    </style>
+  </head>
+  <body>
+    <aside class="sidebar admin-sidebar">
+      <!-- Header/Brand -->
+      <div class="brand">
+        <div class="logo-icon"><img src="Acknobit.jpg" alt="logo-bit" /></div>
+        <div class="brand-text">
+          <h2>ACKNOBIT</h2>
+          <span class="admin-badge">ADMIN PORTAL</span>
+        </div>
+      </div>
+
+      <!-- Main Navigation Items -->
+      <div class="nav-section">
+        <span class="section-title">MANAGEMENT</span>
+
+        <!-- 1. Overview: Total bots, active bots, dead bots summary -->
+        <a href="#overview" class="nav-item active">
+          <span class="icon">📊</span>
+          <span class="label">Overview</span>
+        </a>
+
+        <!-- 2. Visualizations / Graphs -->
+        <a href="#analytics-graphs" class="nav-item">
+          <span class="icon">📈</span>
+          <span class="label">Analytics & Graphs</span>
+        </a>
+
+        <!-- 3. Bot Usages -->
+        <a href="#bot-usages" class="nav-item">
+          <span class="icon">🤖</span>
+          <span class="label">Bot Usages</span>
+        </a>
+
+        <!-- 4. Customers -->
+        <a href="#customers" class="nav-item">
+          <span class="icon">👥</span>
+          <span class="label">Customers</span>
+        </a>
+
+        <!-- 5. Messages -->
+        <a href="#messages" class="nav-item">
+          <span class="icon">💬</span>
+          <span class="label">Messages</span>
+        </a>
+      </div>
+
+      <!-- Bottom Section: Settings & Profile -->
+       <div class="nav-label">Account</div>
+            <button class="nav-btn" onclick="navigateTab('profile')">
+                <div class="nav-btn-left">
+                    <div class="avtar">
+                     <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="100%" height="100%">
+  <!-- Background matching the image context -->
+  <rect width="24" height="24" fill="#0b131e" />
+
+  <g fill="#90a4ae">
+    <!-- Profile Avatar (User Body & Head) -->
+    <!-- Head -->
+    <circle cx="9" cy="6.5" r="2.5" />
+    
+    <!-- Torso with cutout for the gear overlap -->
+    <path d="M 9,10.5 
+             C 5.5,10.5 3.5,12.5 3.5,15.5 
+             L 3.5,17.5 
+             L 10.1,17.5 
+             A 4.5,4.5 0 0,1 9.6,15.0
+             A 4.5,4.5 0 0,1 12.6,11.0 
+             C 11.5,10.6 10.3,10.5 9,10.5 Z" />
+
+    <!-- Settings Gear Component -->
+    <path d="M 16.5,11 A 0.5,0.5 0 0,1 17,11.5 L 17,12 L 17.5,12 A 0.5,0.5 0 0,1 18,12.5 L 18,13.5 A 0.5,0.5 0 0,1 17.5,14 L 17,14 L 17,14.5 A 0.5,0.5 0 0,1 16.5,15 L 15.5,15 A 0.5,0.5 0 0,1 15,14.5 L 15,14 L 14.5,14 A 0.5,0.5 0 0,1 14,13.5 L 14,12.5 A 0.5,0.5 0 0,1 14.5,12 L 15,12 L 15,11.5 A 0.5,0.5 0 0,1 15.5,11 Z" opacity="0" />
+    
+    <!-- Detailed Gear Path with 6 Teeth -->
+    <path d="M 16,11.5 C 16,11.2 15.8,11 15.5,11 L 14.5,11 C 14.2,11 14,11.2 14,11.5 L 14.2,12.3 C 13.9,12.5 13.6,12.7 13.4,13 L 12.6,12.7 C 12.3,12.6 12,12.8 11.9,13.1 L 11.4,14 C 11.2,14.3 11.3,14.6 11.6,14.8 L 12.3,15.2 C 12.3,15.5 12.3,15.8 12.3,16.1 L 11.6,16.5 C 11.3,16.7 11.2,17 11.4,17.3 L 11.9,18.2 C 12.1,18.5 12.4,18.6 12.7,18.5 L 13.4,18.2 C 13.7,18.5 14,18.7 14.3,18.9 L 14.1,19.7 C 14.1,20 14.3,20.2 14.6,20.2 L 15.6,20.2 C 15.9,20.2 16.1,20 16.1,19.7 L 16.2,18.9 C 16.5,18.7 16.8,18.5 17.1,18.2 L 17.8,18.5 C 18.1,18.6 18.4,18.5 18.6,18.2 L 19.1,17.3 C 19.3,17 19.2,16.7 18.9,16.5 L 18.2,16.1 C 18.2,15.8 18.2,15.5 18.2,15.2 L 18.9,14.8 C 19.2,14.6 19.3,14.3 19.1,14 L 18.6,13.1 C 18.4,12.8 18.1,12.6 17.8,12.7 L 17.1,13 C 16.8,12.7 16.5,12.5 16.2,12.3 Z 
+             M 15.1,17 C 14.2,17 13.4,16.2 13.4,15.2 C 13.4,14.2 14.2,13.4 15.1,13.4 C 16.1,13.4 16.9,14.2 16.9,15.2 C 16.9,16.2 16.1,17 15.1,17 Z" />
+  </g>
+</svg>
+
+                    </div>
+                    <span>Profile & Settings</span>
+                </div>
+            </button>
+        </div>
+
+                <div class="user-panel">
+            <div class="user-info">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150" alt="Avatar" class="user-avatar-img" id="sidebarAvatar">
+                <div class="user-details">
+                    <h4 id="sidebarUsername">Demo Account</h4>
+                    <p>Client Member</p>
+                </div>
+                
+        
+      </div>
+    </aside>
+  </body>
+</html>

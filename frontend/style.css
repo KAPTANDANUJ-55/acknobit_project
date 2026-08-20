@@ -832,6 +832,40 @@ button.full-width:hover { background: #1d4ed8; }
   transition: color 0.2s ease;
 }
 
+#mic-btn {
+  position: absolute;
+  bottom: -150px;
+  right: 10px;
+}
+#mic-btn button {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 50%;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+#mic-btn button:hover {
+  color: #38bdf8;
+  transform: scale(1.1);
+}
+
+#chatbot-messages{
+  position: relative !important;
+  border: 4px solid transparent;
+  border-image: linear-gradient(135deg, #00f2fe 0%, #1c074d 100%) 1;
+  background-color: #111827; 
+  color: #ffffff;
+  padding: 24px;
+  max-width: 500px;
+  font-family: sans-serif;
+  line-height: 1.5;
+}
 #close-btn:hover {
   color: #ffffff;
 }
