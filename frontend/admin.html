@@ -282,11 +282,51 @@
                 <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150" alt="Avatar" class="user-avatar-img" id="sidebarAvatar">
                 <div class="user-details">
                     <h4 id="sidebarUsername">Demo Account</h4>
-                    <p>Client Member</p>
+                    <p>Admin Member</p>
                 </div>
                 
         
       </div>
     </aside>
+    <script>
+    function navigateTab(tab) {
+        if (tab === 'profile') {
+          window.location.href = 'profile.html';
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const userId = localStorage.getItem("userId");
+        const storedEmail = localStorage.getItem("userEmail");
+
+        if (!userId) {
+          window.location.href = "login.html";
+          return;
+        }
+
+        fetch(`http://localhost:8080/api/profile/${userId}`)
+          .then((response) => {
+            if (!response.ok) throw new Error("Profile not found");
+            return response.json();
+          })
+          .then((profile) => {
+            const displayName = profile.fullName || profile.username || storedEmail || "Admin User";
+            document.getElementById("sidebarUsername").textContent = displayName;
+
+            if (profile.avatarUrl) {
+              const avatarPath = profile.avatarUrl.startsWith("http")
+                ? profile.avatarUrl
+                : `http://localhost:8080${profile.avatarUrl}`;
+              document.getElementById("sidebarAvatar").src = avatarPath;
+            }
+          })
+          .catch((err) => {
+            console.warn("Could not fetch full profile, using local fallback", err);
+            if (storedEmail) {
+              document.getElementById("sidebarUsername").textContent = storedEmail.split("@")[0];
+            }
+          });
+      });
+    </script>
   </body>
 </html>

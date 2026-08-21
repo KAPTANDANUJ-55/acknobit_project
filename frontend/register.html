@@ -103,12 +103,12 @@ form.addEventListener('submit', function(e) {
     
     if (isValid) {
         const userData = {
-            fullName: fullName.value.trim(),
+            Username: fullName.value.trim(),
             email: mail.value.trim().toLowerCase(),
             password: password.value.trim()
         };
 
-        fetch("http://localhost:8080/api/admin/register", {
+        fetch("http://localhost:8080/Admin/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

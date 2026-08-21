@@ -118,7 +118,7 @@
                     <label for="avatarInput" class="avatar-upload-btn">
                         <i class="fa-solid fa-camera"></i>
                     </label>
-                    <input type="file" id="avatarInput" accept="image/*" style="display: none;" onchange="updateProfilePic(event)">
+                    <input type="file" id="avatarInput" accept="image/*" style="display: none;">
                 </div>
                 <h3 id="cardProfileName">Demo Account</h3>
                 <p id="cardProfileEmail">demo@acknobit.io</p>
@@ -138,17 +138,17 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label>Full Name</label>
-                            <input type="text" class="form-input" id="inputFullName" value="Demo Account">
+                            <input type="text" class="form-input" id="inputFullName" value="">
                         </div>
                         <div class="form-group">
                             <label>Email Address</label>
-                            <input type="email" class="form-input" id="inputEmail" value="demo@acknobit.io">
+                            <input type="email" class="form-input" id="inputEmail" value="">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label>Phone / WhatsApp Number</label>
-                            <input type="text" class="form-input" id="inputPhone" value="+91 98765 43210">
+                            <input type="text" class="form-input" id="inputPhone" value="">
                         </div>
                         <div class="form-group">
                             <label>Preferred Communication</label>
@@ -213,53 +213,143 @@
     </div>
 
     <script>
-      async function handleAvatarUpload(event) {
-    const file = event.target.files[0];
-    if (!file) return;
+        const userId = localStorage.getItem("userId");
+        const storedEmail = localStorage.getItem("userEmail");
+        let selectedAvatarFile = null;
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-        document.getElementById('mainAvatarPreview').src = e.target.result;
-    };
-    reader.readAsDataURL(file);
+        document.addEventListener("DOMContentLoaded", function () {
+            if (!userId) {
+                window.location.href = "login.html";
+                return;
+            }
 
-    const formData = new FormData();
-    formData.append('file', file);
+            fetch(`http://localhost:8080/api/profile/${userId}`)
+                .then(response => {
+                    if (!response.ok) throw new Error("Profile not found");
+                    return response.json();
+                })
+                .then(profile => {
+                    const fullName = profile.fullName || "Admin User";
+                    const email = profile.email || storedEmail || "";
+                    const phone = profile.phone || "";
 
-    const profileId = 1;
+                    document.getElementById("cardProfileName").textContent = fullName;
+                    document.getElementById("cardProfileEmail").textContent = email;
+                    document.getElementById("inputFullName").value = fullName;
+                    document.getElementById("inputEmail").value = email;
+                    document.getElementById("inputPhone").value = phone;
 
-    try {
-        const response = await fetch(`http://localhost:8080/api/profile/${profileId}/avatar`, {
-            method: 'POST',
-            body: formData
+                    if (profile.avatarUrl) {
+                        const avatarPath = profile.avatarUrl.startsWith("http")
+                            ? profile.avatarUrl
+                            : `http://localhost:8080${profile.avatarUrl}`;
+                        document.getElementById("mainAvatarPreview").src = avatarPath;
+                    }
+                })
+                .catch(err => {
+                    console.warn("Could not fetch profile, applying local fallback:", err);
+                    if (storedEmail) {
+                        document.getElementById("cardProfileEmail").textContent = storedEmail;
+                        document.getElementById("inputEmail").value = storedEmail;
+                    }
+                });
         });
 
-        if (response.ok) {
-            showToast('Photo uploaded instantly!');
-        } else {
-            showToast('Photo upload failed.');
-        }
-    } catch (err) {
-        showToast('Network error while uploading.');
-    }
-}
+        document.getElementById("avatarInput").addEventListener("change", async function (event) {
+            const file = event.target.files[0];
+            if (!file || !userId) return;
 
-document.getElementById('avatarInput').addEventListener('change', handleAvatarUpload);
+            selectedAvatarFile = file;
 
-        function saveProfileChanges() {
-            const name = document.getElementById('inputFullName').value.trim();
-            const email = document.getElementById('inputEmail').value.trim();
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                document.getElementById("mainAvatarPreview").src = e.target.result;
+            };
+            reader.readAsDataURL(file);
 
-            if (name) document.getElementById('cardProfileName').innerText = name;
-            if (email) document.getElementById('cardProfileEmail').innerText = email;
-            showToast('Profile information saved!');
+            const fullName = document.getElementById("inputFullName").value.trim();
+            const email = document.getElementById("inputEmail").value.trim();
+            const phone = document.getElementById("inputPhone").value.trim();
+
+            const profileData = { fullName, email, phone };
+            const formData = new FormData();
+            formData.append("profile", new Blob([JSON.stringify(profileData)], { type: "application/json" }));
+            formData.append("avatar", file);
+
+            try {
+                const response = await fetch(`http://localhost:8080/api/profile/${userId}`, {
+                    method: "PUT",
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const savedProfile = await response.json();
+                    if (savedProfile.avatarUrl) {
+                        const avatarPath = savedProfile.avatarUrl.startsWith("http")
+                            ? savedProfile.avatarUrl
+                            : `http://localhost:8080${savedProfile.avatarUrl}`;
+                        document.getElementById("mainAvatarPreview").src = avatarPath;
+                    }
+                    showToast("Profile photo updated successfully!");
+                } else {
+                    const errorMsg = await response.text();
+                    showToast("Failed to upload photo: " + errorMsg);
+                }
+            } catch (err) {
+                console.error("Auto photo upload error:", err);
+                showToast("Network error while uploading photo.");
+            }
+        });
+
+        async function saveProfileChanges() {
+            if (!userId) {
+                showToast("Please login first!");
+                return;
+            }
+
+            const fullName = document.getElementById("inputFullName").value.trim();
+            const email = document.getElementById("inputEmail").value.trim();
+            const phone = document.getElementById("inputPhone").value.trim();
+
+            const profileData = {
+                fullName: fullName,
+                email: email,
+                phone: phone
+            };
+
+            const formData = new FormData();
+            formData.append("profile", new Blob([JSON.stringify(profileData)], { type: "application/json" }));
+
+            if (selectedAvatarFile) {
+                formData.append("avatar", selectedAvatarFile);
+            }
+
+            try {
+                const response = await fetch(`http://localhost:8080/profile/${userId}`, {
+                    method: "PUT",
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const savedProfile = await response.json();
+                    document.getElementById("cardProfileName").textContent = savedProfile.fullName || fullName;
+                    document.getElementById("cardProfileEmail").textContent = savedProfile.email || email;
+                    showToast("Profile details saved successfully!");
+                } else {
+                    const errorMsg = await response.text();
+                    showToast("Save failed: " + errorMsg);
+                }
+            } catch (error) {
+                console.error("Save profile error:", error);
+                showToast("Network error while saving details.");
+            }
         }
 
         function showToast(msg) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastMsg').innerText = msg;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
+            const toast = document.getElementById("toast");
+            document.getElementById("toastMsg").innerText = msg;
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 3000);
         }
     </script>
 </body>

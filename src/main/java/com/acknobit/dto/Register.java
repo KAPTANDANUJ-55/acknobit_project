@@ -1,14 +1,11 @@
 package com.acknobit.dto;
-import lombok.*;
 
+import lombok.Getter;
+import lombok.Setter;
 @Getter @Setter
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 
-public class Login {
-
+public class Register {
+    private String username;
     private String password;
     private String email;
 }
